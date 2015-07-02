@@ -34,7 +34,8 @@ class zabbix_agent::params {
   }
 
   $config_file      = $::operatingsystem ? {
-    default => '/etc/zabbix/zabbix_agentd.conf',
+    /(?i:FreeBSD)/ => '/usr/local/etc/zabbix22/zabbix_agentd.conf',
+    default        => '/etc/zabbix/zabbix_agentd.conf',
   }
 
   $config_file_mode = $::operatingsystem ? {
@@ -46,7 +47,8 @@ class zabbix_agent::params {
   }
 
   $config_file_group = $::operatingsystem ? {
-    default => 'root',
+    /(?i:FreeBSD)/ => 'wheel',
+    default        => 'root',
   }
 
   $pid_file = $::operatingsystem ? {
