@@ -15,49 +15,24 @@
 class zabbix_agent::params {
 
   ### Application related parameters
-  $service_provider      = 'init'
-  $dependencies_class    = 'zabbix_agent::dependencies'
-  $create_user           = true
-  $install               = 'package'
-
-  $install_source        = ''
-  $install_destination   = '/opt'
-  $init_script_template  = 'zabbix_agent/zabbix_agent.init.erb'
+  $servers           = []
+  $start_agents      = 5
+  $agent_debug_level = 3
+  $agent_timeout     = 3
+  $create_user       = true
+  $template          = 'zabbix_agennt/etc/zabbix/zabbix_agentd.conf.erb'
 
   $package = $::operatingsystem ? {
-    default => 'zabbix-agent',
+    /(?i:FreeBSD)/ => 'zabbix22-agent',
+    default        => 'zabbix-agent',
   }
 
   $service = $::operatingsystem ? {
     default => 'zabbix-agent',
   }
 
-  $service_status = $::operatingsystem ? {
-    default => true,
-  }
-
-  $process = $::operatingsystem ? {
-    default => 'zabbix_agentd',
-  }
-
-  $process_args = $::operatingsystem ? {
-    default => '',
-  }
-
-  $process_user = $::operatingsystem ? {
-    default => 'zabbix',
-  }
-
-  $process_group = $::operatingsystem ? {
-    default => 'zabbix',
-  }
-
-  $config_dir = $::operatingsystem ? {
-    default => '',
-  }
-
-  $config_file = $::operatingsystem ? {
-    default => '',
+  $config_file      = $::operatingsystem ? {
+    default => '/etc/zabbix/zabbix_agentd.conf',
   }
 
   $config_file_mode = $::operatingsystem ? {
@@ -76,14 +51,6 @@ class zabbix_agent::params {
     default => '/var/run/zabbix/zabbix_agentd.pid',
   }
 
-  $data_dir = $::operatingsystem ? {
-    default => '',
-  }
-
-  $log_dir = $::operatingsystem ? {
-    default => '/var/log/zabbix',
-  }
-
   $log_file = $::operatingsystem ? {
     default => '/var/log/zabbix/zabbix_agentd.log',
   }
@@ -92,28 +59,12 @@ class zabbix_agent::params {
   $protocol = 'tcp'
 
   # General Settings
-  $my_class = ''
-  $source = ''
-  $source_dir = ''
-  $source_dir_purge = false
-  $template = ''
-  $options = ''
   $service_autorestart = true
-  $version = 'present'
   $absent = false
   $disable = false
   $disableboot = false
 
   ### General module variables that can have a site or per module default
-  $monitor = false
-  $monitor_tool = ''
-  $monitor_target = $::ipaddress
-  $firewall = false
-  $firewall_tool = ''
-  $firewall_src = '0.0.0.0/0'
-  $firewall_dst = $::ipaddress
-  $puppi = false
-  $puppi_helper = 'standard'
   $debug = false
   $audit_only = false
   $noops = undef

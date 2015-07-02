@@ -1,0 +1,8 @@
+#Managed by puppet
+Server=<%= @servers.join(' ') %>
+Hostname=<%= @fqdn %>
+StartAgents=<%= @start_agents %>
+DebugLevel=<%= @agent_debug_level %>
+PidFile=<%= $pid_file %>
+LogFile=<%= $log_file %>
+Timeout=<%= $agent_timeout %>
