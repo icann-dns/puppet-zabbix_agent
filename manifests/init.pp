@@ -90,7 +90,6 @@ class zabbix_agent (
 
 
   validate_array($servers)
-  notify {$start_agents: }
   validate_integer($start_agents,100)
   validate_integer($agent_debug_level,100)
   validate_integer($agent_timeout,120)
@@ -102,7 +101,7 @@ class zabbix_agent (
   validate_string($config_file_owner)
   validate_string($config_file_group)
   validate_bool($debug)
-  validate_bool($noops)
+  validate_string($noops)
   validate_absolute_path($pid_file)
   validate_absolute_path($log_file)
   validate_integer($port, 65536)
