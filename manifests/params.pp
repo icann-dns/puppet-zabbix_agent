@@ -15,10 +15,10 @@
 class zabbix_agent::params {
 
   $servers           = []
-  $start_agents      = 5
-  $agent_debug_level = 3
-  $agent_timeout     = 3
-  $port              = 10050
+  $start_agents      = 5 + 0
+  $agent_debug_level = 3 + 0
+  $agent_timeout     = 3 + 0
+  $port              = 10050 + 0
   $protocol          = 'tcp'
   $debug             = false
   $noops             = undef
