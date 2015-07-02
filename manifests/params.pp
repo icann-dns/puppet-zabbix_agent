@@ -30,7 +30,8 @@ class zabbix_agent::params {
   }
 
   $service = $::operatingsystem ? {
-    default => 'zabbix-agent',
+    /(?i:FreeBSD)/ => 'zabbix_agentd',
+    default        => 'zabbix-agent',
   }
 
   $config_file      = $::operatingsystem ? {
