@@ -21,7 +21,7 @@ class zabbix_agent::params {
   $port              = 10050
   $protocol          = 'tcp'
   $debug             = false
-  $noops             = undef
+  $noops             = false
   $template          = 'zabbix_agennt/etc/zabbix/zabbix_agentd.conf.erb'
 
   $package = $::operatingsystem ? {
