@@ -53,11 +53,13 @@ class zabbix_agent::params {
   }
 
   $pid_file = $::operatingsystem ? {
-    default => '/var/run/zabbix/zabbix_agentd.pid',
+    /(?i:FreeBSD)/ => '/tmp/zabbix_agentd.pid',
+    default        => '/var/run/zabbix/zabbix_agentd.pid',
   }
 
   $log_file = $::operatingsystem ? {
-    default => '/var/log/zabbix/zabbix_agentd.log',
+    /(?i:FreeBSD)/ => '/tmp/zabbix_agentd.log',
+    default        => '/var/log/zabbix/zabbix_agentd.log',
   }
 
 
