@@ -68,28 +68,29 @@
 # See README for usage patterns.
 #
 class zabbix_agent (
-  $servers               = $::zabbix::params::servers,
-  $start_agents          = $::zabbix::params::start_agents,
-  $agent_debug_level     = $::zabbix::params::agent_debug_level,
-  $agent_timeout         = $::zabbix::params::agent_timeout,
-  $package               = $::zabbix::params::package,
-  $service               = $::zabbix::params::service,
-  $template              = $::zabbix::params::template,
-  $config_file           = $::zabbix::params::config_file,
-  $config_file_mode      = $::zabbix::params::config_file_mode,
-  $config_file_owner      = $::zabbix::params::config_file_owner,
-  $config_file_group     = $::zabbix::params::config_file_group,
-  $debug                 = $::zabbix::params::debug,
-  $noops                 = $::zabbix::params::noops,
-  $service_status        = $::zabbix::params::service_status,
-  $pid_file              = $::zabbix::params::pid_file,
-  $log_file              = $::zabbix::params::log_file,
-  $port                  = $::zabbix::params::port,
-  $protocol              = $::zabbix::params::protocol
+  $servers           = $::zabbix::params::servers,
+  $start_agents      = $::zabbix::params::start_agents,
+  $agent_debug_level = $::zabbix::params::agent_debug_level,
+  $agent_timeout     = $::zabbix::params::agent_timeout,
+  $package           = $::zabbix::params::package,
+  $service           = $::zabbix::params::service,
+  $template          = $::zabbix::params::template,
+  $config_file       = $::zabbix::params::config_file,
+  $config_file_mode  = $::zabbix::params::config_file_mode,
+  $config_file_owner = $::zabbix::params::config_file_owner,
+  $config_file_group = $::zabbix::params::config_file_group,
+  $debug             = $::zabbix::params::debug,
+  $noops             = $::zabbix::params::noops,
+  $service_status    = $::zabbix::params::service_status,
+  $pid_file          = $::zabbix::params::pid_file,
+  $log_file          = $::zabbix::params::log_file,
+  $port              = $::zabbix::params::port,
+  $protocol          = $::zabbix::params::protocol
   ) inherits zabbix_agent::params {
 
 
   validate_array($servers)
+  notify {$start_agents: }
   validate_integer($start_agents)
   validate_integer($agent_debug_level)
   validate_integer($agent_timeout)

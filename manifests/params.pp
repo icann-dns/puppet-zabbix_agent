@@ -14,12 +14,14 @@
 #
 class zabbix_agent::params {
 
-  ### Application related parameters
   $servers           = []
   $start_agents      = 5
   $agent_debug_level = 3
   $agent_timeout     = 3
-  $create_user       = true
+  $port              = 10050
+  $protocol          = 'tcp'
+  $debug             = false
+  $noops             = undef
   $template          = 'zabbix_agennt/etc/zabbix/zabbix_agentd.conf.erb'
 
   $package = $::operatingsystem ? {
@@ -55,18 +57,5 @@ class zabbix_agent::params {
     default => '/var/log/zabbix/zabbix_agentd.log',
   }
 
-  $port = 10050
-  $protocol = 'tcp'
-
-  # General Settings
-  $service_autorestart = true
-  $absent = false
-  $disable = false
-  $disableboot = false
-
-  ### General module variables that can have a site or per module default
-  $debug = false
-  $audit_only = false
-  $noops = undef
 
 }
