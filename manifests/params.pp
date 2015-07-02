@@ -55,7 +55,7 @@ class zabbix_agent::params {
     default => '/var/log/zabbix/zabbix_agentd.log',
   }
 
-  $port = '10050'
+  $port = 10050
   $protocol = 'tcp'
 
   # General Settings
