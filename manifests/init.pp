@@ -101,7 +101,7 @@ class zabbix_agent (
   validate_string($config_file_owner)
   validate_string($config_file_group)
   validate_bool($debug)
-  validate_string($noops)
+  validate_bool($noops)
   validate_absolute_path($pid_file)
   validate_absolute_path($log_file)
   validate_integer($port, 65536)
