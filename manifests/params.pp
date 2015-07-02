@@ -22,7 +22,7 @@ class zabbix_agent::params {
   $protocol          = 'tcp'
   $debug             = false
   $noops             = false
-  $template          = 'zabbix_agennt/etc/zabbix/zabbix_agentd.conf.erb'
+  $template          = 'zabbix_agent/etc/zabbix/zabbix_agentd.conf.erb'
 
   $package = $::operatingsystem ? {
     /(?i:FreeBSD)/ => 'zabbix22-agent',
