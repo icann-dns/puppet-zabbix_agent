@@ -85,7 +85,8 @@ class zabbix_agent (
   $pid_file          = $::zabbix_agent::params::pid_file,
   $log_file          = $::zabbix_agent::params::log_file,
   $port              = $::zabbix_agent::params::port,
-  $protocol          = $::zabbix_agent::params::protocol
+  $protocol          = $::zabbix_agent::params::protocol,
+  $include_dir       = $::zabbix_agent::params::include_dir,
   ) inherits zabbix_agent::params {
 
 
@@ -106,6 +107,7 @@ class zabbix_agent (
   validate_absolute_path($log_file)
   validate_integer($port, 65536)
   validate_string($protocol)
+  validate_absolute_path($include_dir)
 
 
   package { $package:

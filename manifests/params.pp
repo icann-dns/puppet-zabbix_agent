@@ -24,6 +24,10 @@ class zabbix_agent::params {
   $noops             = false
   $template          = 'zabbix_agent/etc/zabbix/zabbix_agentd.conf.erb'
 
+  $include_dir = $::operatingsystem ? {
+    /(?i:FreeBSD)/ => '/usr/local/etc/zabbix22/zabbix_agentd.conf.d/',
+    default        => '/etc/zabbix/zabbix_agentd.d/',
+  }
   $package = $::operatingsystem ? {
     /(?i:FreeBSD)/ => 'zabbix22-agent',
     default        => 'zabbix-agent',
