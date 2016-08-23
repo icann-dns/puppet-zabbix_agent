@@ -14,7 +14,6 @@ class zabbix_agent (
   $config_file_group = $::zabbix_agent::params::config_file_group,
   $debug             = $::zabbix_agent::params::debug,
   $noops             = $::zabbix_agent::params::noops,
-  $service_status    = $::zabbix_agent::params::service_status,
   $pid_file          = $::zabbix_agent::params::pid_file,
   $log_file          = $::zabbix_agent::params::log_file,
   $port              = $::zabbix_agent::params::port,
