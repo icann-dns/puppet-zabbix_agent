@@ -1,6 +1,6 @@
 {
   "name": "icann-zabbix_agent",
-  "version": "0.1.0",
+  "version": "3.0.0",
   "author": "b4ldr",
   "summary": "Puppet zabbix_agent module",
   "license": "Apache-2.0",
