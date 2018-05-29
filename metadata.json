@@ -1,7 +1,7 @@
 {
   "name": "icann-zabbix_agent",
   "version": "3.0.0",
-  "author": "b4ldr",
+  "author": "example42",
   "summary": "Puppet zabbix_agent module",
   "license": "Apache-2.0",
   "source": "https://github.com/icann-dns/puppet-zabbix_agent.git",
