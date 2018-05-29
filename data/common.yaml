@@ -1,0 +1,17 @@
+zabbix_agent::servers:
+  - 127.0.0.1
+zabbix_agent::start_agents: 5
+zabbix_agent::agent_debug_level: 3
+zabbix_agent::agent_timeout: 3
+zabbix_agent::package: zabbix-agent
+zabbix_agent::service: zabbix-agent
+zabbix_agent::template: zabbix_agent/etc/zabbix/zabbix_agentd.conf.erb
+zabbix_agent::config_file: /etc/zabbix/zabbix_agentd.conf
+zabbix_agent::mode:  '0644'
+zabbix_agent::owner: root
+zabbix_agent::group: root
+zabbix_agent::debug: false
+zabbix_agent::pid_file: /var/run/zabbix/zabbix_agentd.pid
+zabbix_agent::log_file: /var/log/zabbix/zabbix_agentd.log
+zabbix_agent::port: 10050
+zabbix_agent::include_dir: /etc/zabbix/zabbix_agentd.d/

@@ -1,5 +1,6 @@
 #Managed by puppet
 Server=<%= @servers.join(', ') %>
+ListenPort=<%= @port %>
 Hostname=<%= @fqdn %>
 StartAgents=<%= @start_agents %>
 DebugLevel=<%= @agent_debug_level %>

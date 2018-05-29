@@ -1,0 +1,28 @@
+{
+  "name": "icann-zabbix_agent",
+  "version": "0.1.0",
+  "author": "b4ldr",
+  "summary": "Puppet zabbix_agent module",
+  "license": "Apache-2.0",
+  "source": "git://github.com/icann-dns/puppet-zabbix_agent.git",
+  "project_page": "https://github.com/icann-dns/puppet-zabbix_agent",
+  "issues_url": "https://github.com/icann-dns/puppet-zabbix_agent/issues",
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "FreeBSD",
+      "operatingsystemrelease": ["10", "11"]
+    },
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": ["14.04", "16.04"]
+    }
+  ],
+  "requirements": [
+    { "name": "puppet", "version_requirement": ">= 4.9.0" }
+  ],
+  "description": "A module to deploy and manage zabbix_agent",
+  "dependencies": [
+    {"name": "puppetlabs/stdlib", "version_requirement": ">=4.25.0 <5.0.0"}
+  ],
+  "data_provider": "hiera"
+}
