@@ -4,7 +4,7 @@
   "author": "b4ldr",
   "summary": "Puppet zabbix_agent module",
   "license": "Apache-2.0",
-  "source": "git://github.com/icann-dns/puppet-zabbix_agent.git",
+  "source": "https://github.com/icann-dns/puppet-zabbix_agent.git",
   "project_page": "https://github.com/icann-dns/puppet-zabbix_agent",
   "issues_url": "https://github.com/icann-dns/puppet-zabbix_agent/issues",
   "operatingsystem_support": [
