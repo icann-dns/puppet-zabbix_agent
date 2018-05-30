@@ -1,8 +1,8 @@
-zabbix_agent::package: zabbix22-agent
+zabbix_agent::package: zabbix34-agent
 zabbix_agent::service: zabbix-agentd
-zabbix_agent::config_file: /usr/local/etc/zabbix22/zabbix_agentd.conf
+zabbix_agent::config_file: /usr/local/etc/zabbix34/zabbix_agentd.conf
 zabbix_agent::group: wheel
 zabbix_agent::pid_file: /tmp/zabbix_agentd.pid
 zabbix_agent::log_file: /tmp/zabbix_agentd.log
-zabbix_agent::include_dir: /usr/local/etc/zabbix22/zabbix_agentd.conf.d/
+zabbix_agent::include_dir: /usr/local/etc/zabbix34/zabbix_agentd.conf.d/
 
