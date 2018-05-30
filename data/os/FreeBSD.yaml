@@ -1,5 +1,5 @@
 zabbix_agent::package: zabbix34-agent
-zabbix_agent::service: zabbix-agentd
+zabbix_agent::service: zabbix_agentd
 zabbix_agent::config_file: /usr/local/etc/zabbix34/zabbix_agentd.conf
 zabbix_agent::group: wheel
 zabbix_agent::pid_file: /tmp/zabbix_agentd.pid
