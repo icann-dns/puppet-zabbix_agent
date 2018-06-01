@@ -1,3 +1,6 @@
+### 01 June 2018 - 3.0.3
+- fix metadata
+
 ### 30 May 2018 - 3.0.2
 - fix typo in init script
 
