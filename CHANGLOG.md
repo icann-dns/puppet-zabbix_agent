@@ -1,3 +1,6 @@
+### 15 August 2018 - 3.1.0
+- Add support for user parameters
+
 ### 01 June 2018 - 3.0.3
 - fix metadata
 
