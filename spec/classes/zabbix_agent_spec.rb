@@ -16,13 +16,13 @@ describe 'zabbix_agent' do
 
       case facts[:operatingsystem]
       when 'FreeBSD'
-        let(:package) { 'zabbix22-agent' }
-        let(:service) { 'zabbix-agentd' }
-        let(:config_file) { '/usr/local/etc/zabbix22/zabbix_agentd.conf' }
+        let(:package) { 'zabbix34-agent' }
+        let(:service) { 'zabbix_agentd' }
+        let(:config_file) { '/usr/local/etc/zabbix34/zabbix_agentd.conf' }
         let(:group) { 'wheel' }
         let(:pid_file) { '/tmp/zabbix_agentd.pid' }
         let(:log_file) { '/tmp/zabbix_agentd.log' }
-        let(:include_dir) { '/usr/local/etc/zabbix22/zabbix_agentd.conf.d/' }
+        let(:include_dir) { '/usr/local/etc/zabbix34/zabbix_agentd.conf.d/' }
       else
         let(:package) { 'zabbix-agent' }
         let(:service) { 'zabbix-agent' }
@@ -43,7 +43,7 @@ describe 'zabbix_agent' do
         end
         it do
           is_expected.to contain_file(config_file).with(
-            ensure: 'present',
+            ensure: 'file',
             mode: '0644',
             owner: 'root',
             group: group
@@ -63,6 +63,13 @@ describe 'zabbix_agent' do
             %r{^Timeout=3$}
           ).with_content(
             %r{^Include=#{include_dir}$}
+          )
+        end
+        it do
+          is_expected.to contain_file(include_dir).with(
+            ensure: 'directory',
+            owner: 'root',
+            group: group
           )
         end
       end
