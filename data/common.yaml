@@ -16,3 +16,4 @@ zabbix_agent::log_file: /var/log/zabbix/zabbix_agentd.log
 zabbix_agent::port: 10050
 zabbix_agent::include_dir: /etc/zabbix/zabbix_agentd.d/
 zabbix_agent::user_parameters: ~
+zabbix_agent::additional_groups: ~
