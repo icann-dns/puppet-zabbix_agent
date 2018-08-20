@@ -18,6 +18,7 @@ class zabbix_agent (
   Stdlib::Port                         $port,
   Stdlib::Absolutepath                 $include_dir,
   Optional[Hash[String[1], String[1]]] $user_parameters,
+  Optional[Array[String[1]]]           $additional_groups,
   ) {
 
   ensure_packages([$package])
@@ -49,6 +50,12 @@ class zabbix_agent (
       content => template('zabbix_agent/etc/zabbix/zabbix_agent.d/userparameter_puppetmanaged.conf.erb'),
       require => Package[$package],
       notify  => Service[$service],
+    }
+  }
+  if $additional_groups {
+    user {'zabbix':
+      groups     => $additional_groups,
+      membership => minimum,
     }
   }
 }
