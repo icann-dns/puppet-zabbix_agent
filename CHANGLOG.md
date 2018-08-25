@@ -1,3 +1,6 @@
+### 24 August 2018 - 3.3.0
+- Add support for ServerActive agent parameter
+
 ### 15 August 2018 - 3.2.0
 - Add support for managing zabbix user group membership
 
