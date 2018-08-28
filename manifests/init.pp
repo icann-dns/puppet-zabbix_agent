@@ -2,7 +2,7 @@
 #
 class zabbix_agent (
   Array[Stdlib::Ip::Address]           $servers,
-  Array[Stdlib::Ip::Address]           $activeservers,
+  Optional[Array[Stdlib::Ip::Address]] $activeservers,
   Integer[1,100]                       $start_agents,
   Integer[1,5]                         $agent_debug_level,
   Integer[1,30]                        $agent_timeout,
