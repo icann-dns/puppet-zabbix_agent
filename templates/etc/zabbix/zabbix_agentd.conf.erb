@@ -1,6 +1,8 @@
 #Managed by puppet
 Server=<%= @servers.join(', ') %>
+<%- if @activeservers.any? then
 ServerActive=<%= @activeservers.join(', ') %>
+end -%>
 ListenPort=<%= @port %>
 Hostname=<%= @fqdn %>
 StartAgents=<%= @start_agents %>
