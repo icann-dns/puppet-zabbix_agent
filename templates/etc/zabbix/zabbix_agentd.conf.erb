@@ -1,6 +1,6 @@
 #Managed by puppet
 Server=<%= @servers.join(', ') %>
-<%- if @activeservers.any? then %>
+<%- if @activeservers.empty? then %>
 ServerActive=<%= @activeservers.join(', ') %>
 <%-end -%>
 ListenPort=<%= @port %>
