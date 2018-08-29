@@ -1,6 +1,5 @@
 zabbix_agent::servers:
   - 127.0.0.1
-zabbix_agent::activeservers: ~
 zabbix_agent::start_agents: 5
 zabbix_agent::agent_debug_level: 3
 zabbix_agent::agent_timeout: 3
