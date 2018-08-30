@@ -1,3 +1,6 @@
+### 24 August 2018 - 3.3.1
+- Make activeservers paramater optional
+
 ### 24 August 2018 - 3.3.0
 - Add support for ServerActive agent parameter
 
