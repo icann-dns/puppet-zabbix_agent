@@ -1,3 +1,6 @@
+### 24 August 2018 - 3.3.2
+- Fix tag 3.3.1 points to old broken code
+
 ### 24 August 2018 - 3.3.1
 - Make activeservers paramater optional
 
