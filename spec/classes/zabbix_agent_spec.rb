@@ -63,6 +63,8 @@ describe 'zabbix_agent' do
             %r{^Timeout=3$}
           ).with_content(
             %r{^Include=#{include_dir}$}
+          ).without_content(
+            %r{^ServerActive=}
           )
         end
         it do
@@ -80,6 +82,15 @@ describe 'zabbix_agent' do
           it do
             is_expected.to contain_file(config_file).with_content(
               %r{^Server=192.0.2.1, 192.0.2.3$}
+            )
+          end
+        end
+        context 'activeservers' do
+          before { params.merge!(activeservers: ['192.0.2.1', '192.0.2.3']) }
+          it { is_expected.to compile }
+          it do
+            is_expected.to contain_file(config_file).with_content(
+              %r{^ServerActive=192.0.2.1, 192.0.2.3$}
             )
           end
         end
@@ -205,6 +216,10 @@ describe 'zabbix_agent' do
       describe 'check bad type' do
         context 'servers' do
           before { params.merge!(servers: true) }
+          it { expect { subject.call }.to raise_error(Puppet::Error) }
+        end
+        context 'activeservers' do
+          before { params.merge!(activeservers: true) }
           it { expect { subject.call }.to raise_error(Puppet::Error) }
         end
         context 'start_agents' do
