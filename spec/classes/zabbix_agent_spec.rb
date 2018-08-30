@@ -38,7 +38,7 @@ describe 'zabbix_agent' do
         it do
           is_expected.to contain_service(service).with(
             ensure: 'running',
-            enable: true
+            enable: true,
           )
         end
         it do
@@ -46,237 +46,237 @@ describe 'zabbix_agent' do
             ensure: 'file',
             mode: '0644',
             owner: 'root',
-            group: group
+            group: group,
           ).with_content(
-            %r{^Server=127.0.0.1$}
+            %r{^Server=127.0.0.1$},
           ).with_content(
-            %r{^Hostname=zabbix_agent.example.com$}
+            %r{^Hostname=zabbix_agent.example.com$},
           ).with_content(
-            %r{^StartAgents=5$}
+            %r{^StartAgents=5$},
           ).with_content(
-            %r{^DebugLevel=3$}
+            %r{^DebugLevel=3$},
           ).with_content(
-            %r{^PidFile=#{pid_file}$}
+            %r{^PidFile=#{pid_file}$},
           ).with_content(
-            %r{^LogFile=#{log_file}$}
+            %r{^LogFile=#{log_file}$},
           ).with_content(
-            %r{^Timeout=3$}
+            %r{^Timeout=3$},
           ).with_content(
-            %r{^Include=#{include_dir}$}
+            %r{^Include=#{include_dir}$},
           ).without_content(
-            %r{^ServerActive=}
+            %r{^ServerActive=},
           )
         end
         it do
           is_expected.to contain_file(include_dir).with(
             ensure: 'directory',
             owner: 'root',
-            group: group
+            group: group,
           )
         end
       end
       describe 'Change Defaults' do
         context 'servers' do
-          before { params.merge!(servers: ['192.0.2.1', '192.0.2.3']) }
+          before(:each) { params.merge!(servers: ['192.0.2.1', '192.0.2.3']) }
           it { is_expected.to compile }
           it do
             is_expected.to contain_file(config_file).with_content(
-              %r{^Server=192.0.2.1, 192.0.2.3$}
+              %r{^Server=192.0.2.1, 192.0.2.3$},
             )
           end
         end
         context 'activeservers' do
-          before { params.merge!(activeservers: ['192.0.2.1', '192.0.2.3']) }
+          before(:each) { params.merge!(activeservers: ['192.0.2.1', '192.0.2.3']) }
           it { is_expected.to compile }
           it do
             is_expected.to contain_file(config_file).with_content(
-              %r{^ServerActive=192.0.2.1, 192.0.2.3$}
+              %r{^ServerActive=192.0.2.1, 192.0.2.3$},
             )
           end
         end
         context 'start_agents' do
-          before { params.merge!(start_agents: 42) }
+          before(:each) { params.merge!(start_agents: 42) }
           it { is_expected.to compile }
           it do
             is_expected.to contain_file(config_file).with_content(
-              %r{^StartAgents=42$}
+              %r{^StartAgents=42$},
             )
           end
         end
         context 'agent_debug_level' do
-          before { params.merge!(agent_debug_level: 5) }
+          before(:each) { params.merge!(agent_debug_level: 5) }
           it { is_expected.to compile }
           it do
             is_expected.to contain_file(config_file).with_content(
-              %r{^DebugLevel=5$}
+              %r{^DebugLevel=5$},
             )
           end
         end
         context 'agent_timeout' do
-          before { params.merge!(agent_timeout: 30) }
+          before(:each) { params.merge!(agent_timeout: 30) }
           it { is_expected.to compile }
           it do
             is_expected.to contain_file(config_file).with_content(
-              %r{^Timeout=30$}
+              %r{^Timeout=30$},
             )
           end
         end
         context 'package' do
-          before { params.merge!(package: 'foobar') }
+          before(:each) { params.merge!(package: 'foobar') }
           it { is_expected.to compile }
           it { is_expected.to contain_package('foobar') }
         end
         context 'service' do
-          before { params.merge!(service: 'foobar') }
+          before(:each) { params.merge!(service: 'foobar') }
           it { is_expected.to compile }
           it do
             is_expected.to contain_service('foobar').with(
               ensure: 'running',
-              enable: true
+              enable: true,
             )
           end
         end
         context 'config_file' do
-          before { params.merge!(config_file: '/foo/bar') }
+          before(:each) { params.merge!(config_file: '/foo/bar') }
           it { is_expected.to compile }
           it do
             is_expected.to contain_file('/foo/bar').with_group(group).with_content(
-              %r{^Server=127.0.0.1$}
+              %r{^Server=127.0.0.1$},
             ).with_content(
-              %r{^Hostname=zabbix_agent.example.com$}
+              %r{^Hostname=zabbix_agent.example.com$},
             ).with_content(
-              %r{^ListenPort=10050$}
+              %r{^ListenPort=10050$},
             ).with_content(
-              %r{^StartAgents=5$}
+              %r{^StartAgents=5$},
             ).with_content(
-              %r{^DebugLevel=3$}
+              %r{^DebugLevel=3$},
             ).with_content(
-              %r{^PidFile=#{pid_file}$}
+              %r{^PidFile=#{pid_file}$},
             ).with_content(
-              %r{^LogFile=#{log_file}$}
+              %r{^LogFile=#{log_file}$},
             ).with_content(
-              %r{^Timeout=3$}
+              %r{^Timeout=3$},
             ).with_content(
-              %r{^Include=#{include_dir}$}
+              %r{^Include=#{include_dir}$},
             )
           end
         end
         context 'mode' do
-          before { params.merge!(mode: '0600') }
+          before(:each) { params.merge!(mode: '0600') }
           it { is_expected.to compile }
           it { is_expected.to contain_file(config_file).with_mode('0600') }
         end
         context 'owner' do
-          before { params.merge!(owner: 'foobar') }
+          before(:each) { params.merge!(owner: 'foobar') }
           it { is_expected.to compile }
           it { is_expected.to contain_file(config_file).with_owner('foobar') }
         end
         context 'group' do
-          before { params.merge!(group: 'foobar') }
+          before(:each) { params.merge!(group: 'foobar') }
           it { is_expected.to compile }
           it { is_expected.to contain_file(config_file).with_group('foobar') }
         end
         context 'pid_file' do
-          before { params.merge!(pid_file: '/foo/bar') }
+          before(:each) { params.merge!(pid_file: '/foo/bar') }
           it { is_expected.to compile }
           it do
             is_expected.to contain_file(config_file).with_content(
-              %r{^PidFile=/foo/bar$}
+              %r{^PidFile=/foo/bar$},
             )
           end
         end
         context 'log_file' do
-          before { params.merge!(log_file: '/foo/bar') }
+          before(:each) { params.merge!(log_file: '/foo/bar') }
           it { is_expected.to compile }
           it do
             is_expected.to contain_file(config_file).with_content(
-              %r{^LogFile=/foo/bar$}
+              %r{^LogFile=/foo/bar$},
             )
           end
         end
         context 'port' do
-          before { params.merge!(port: 42) }
+          before(:each) { params.merge!(port: 42) }
           it { is_expected.to compile }
           it do
             is_expected.to contain_file(config_file).with_content(
-              %r{^ListenPort=42$}
+              %r{^ListenPort=42$},
             )
           end
         end
         context 'include_dir' do
-          before { params.merge!(include_dir: '/foo/bar') }
+          before(:each) { params.merge!(include_dir: '/foo/bar') }
           it { is_expected.to compile }
           it do
             is_expected.to contain_file(config_file).with_content(
-              %r{^Include=/foo/bar$}
+              %r{^Include=/foo/bar$},
             )
           end
         end
       end
       describe 'check bad type' do
         context 'servers' do
-          before { params.merge!(servers: true) }
-          it { expect { subject.call }.to raise_error(Puppet::Error) }
+          before(:each) { params.merge!(servers: true) }
+          it { is_expected.to raise_error(Puppet::Error) }
         end
         context 'activeservers' do
-          before { params.merge!(activeservers: true) }
-          it { expect { subject.call }.to raise_error(Puppet::Error) }
+          before(:each) { params.merge!(activeservers: true) }
+          it { is_expected.to raise_error(Puppet::Error) }
         end
         context 'start_agents' do
-          before { params.merge!(start_agents: true) }
-          it { expect { subject.call }.to raise_error(Puppet::Error) }
+          before(:each) { params.merge!(start_agents: true) }
+          it { is_expected.to raise_error(Puppet::Error) }
         end
         context 'agent_debug_level' do
-          before { params.merge!(agent_debug_level: true) }
-          it { expect { subject.call }.to raise_error(Puppet::Error) }
+          before(:each) { params.merge!(agent_debug_level: true) }
+          it { is_expected.to raise_error(Puppet::Error) }
         end
         context 'agent_timeout' do
-          before { params.merge!(agent_timeout: true) }
-          it { expect { subject.call }.to raise_error(Puppet::Error) }
+          before(:each) { params.merge!(agent_timeout: true) }
+          it { is_expected.to raise_error(Puppet::Error) }
         end
         context 'package' do
-          before { params.merge!(package: true) }
-          it { expect { subject.call }.to raise_error(Puppet::Error) }
+          before(:each) { params.merge!(package: true) }
+          it { is_expected.to raise_error(Puppet::Error) }
         end
         context 'service' do
-          before { params.merge!(service: true) }
-          it { expect { subject.call }.to raise_error(Puppet::Error) }
+          before(:each) { params.merge!(service: true) }
+          it { is_expected.to raise_error(Puppet::Error) }
         end
         context 'template' do
-          before { params.merge!(template: true) }
-          it { expect { subject.call }.to raise_error(Puppet::Error) }
+          before(:each) { params.merge!(template: true) }
+          it { is_expected.to raise_error(Puppet::Error) }
         end
         context 'config_file' do
-          before { params.merge!(config_file: true) }
-          it { expect { subject.call }.to raise_error(Puppet::Error) }
+          before(:each) { params.merge!(config_file: true) }
+          it { is_expected.to raise_error(Puppet::Error) }
         end
         context 'mode' do
-          before { params.merge!(mode: true) }
-          it { expect { subject.call }.to raise_error(Puppet::Error) }
+          before(:each) { params.merge!(mode: true) }
+          it { is_expected.to raise_error(Puppet::Error) }
         end
         context 'owner' do
-          before { params.merge!(owner: true) }
-          it { expect { subject.call }.to raise_error(Puppet::Error) }
+          before(:each) { params.merge!(owner: true) }
+          it { is_expected.to raise_error(Puppet::Error) }
         end
         context 'group' do
-          before { params.merge!(group: true) }
-          it { expect { subject.call }.to raise_error(Puppet::Error) }
+          before(:each) { params.merge!(group: true) }
+          it { is_expected.to raise_error(Puppet::Error) }
         end
         context 'pid_file' do
-          before { params.merge!(pid_file: true) }
-          it { expect { subject.call }.to raise_error(Puppet::Error) }
+          before(:each) { params.merge!(pid_file: true) }
+          it { is_expected.to raise_error(Puppet::Error) }
         end
         context 'log_file' do
-          before { params.merge!(log_file: true) }
-          it { expect { subject.call }.to raise_error(Puppet::Error) }
+          before(:each) { params.merge!(log_file: true) }
+          it { is_expected.to raise_error(Puppet::Error) }
         end
         context 'port' do
-          before { params.merge!(port: true) }
-          it { expect { subject.call }.to raise_error(Puppet::Error) }
+          before(:each) { params.merge!(port: true) }
+          it { is_expected.to raise_error(Puppet::Error) }
         end
         context 'include_dir' do
-          before { params.merge!(include_dir: true) }
-          it { expect { subject.call }.to raise_error(Puppet::Error) }
+          before(:each) { params.merge!(include_dir: true) }
+          it { is_expected.to raise_error(Puppet::Error) }
         end
       end
     end
